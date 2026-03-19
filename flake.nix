@@ -52,6 +52,7 @@
         # This nixos-hardware input imports packages compatible with the Dell G5 5590.
         # Remove this line if not using relavant hardware.
 	      nixos-hardware.nixosModules.dell-xps-15-7590
+        niri.nixosModules.niri
         stylix.nixosModules.stylix
 	      home-manager.nixosModules.home-manager
       ];
@@ -65,8 +66,8 @@
       modules = [
 	      ./hosts/g5-5590/configuration.nix
 	      ./nixosModules
-        niri.nixosModules.niri
 	      nixos-hardware.nixosModules.dell-xps-15-7590
+        niri.nixosModules.niri
         stylix.nixosModules.stylix
 	      home-manager.nixosModules.home-manager
       ];
