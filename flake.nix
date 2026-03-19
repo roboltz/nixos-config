@@ -49,7 +49,7 @@
 
     homeManagerModules.nixos = import ./homeManagerModules;
 
-    # You can remove me, this configuration is not included due to a .gitignore file.
+    # You can remove me
     nixosConfigurations.g5-5590 = nixpkgs.lib.nixosSystem {
       specialArgs = { inherit inputs; };
       modules = [
