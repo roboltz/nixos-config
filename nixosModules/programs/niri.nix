@@ -1,4 +1,4 @@
-{ pkgs, lib, config, ... }:
+{ pkgs, lib, config, inputs, ... }:
 
 {
   options = {
@@ -6,7 +6,9 @@
   };
 
   config = lib.mkIf config.niri.enable {
+    nixpkgs.overlays = [ inputs.niri.overlays.niri ];
     programs.niri.enable = true;
+    programs.niri.package = pkgs.niri-unstable;
     services.displayManager.ly.enable = true;
     security.polkit.enable = true;
     services.gnome.gnome-keyring.enable = true;

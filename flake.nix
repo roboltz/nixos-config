@@ -12,14 +12,24 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    niri-src.url = "github:niri-wm/niri?ref=wip/branch";
+
+    niri = {
+      url = "github:sodiboo/niri-flake";
+      inputs.niri-unstable.follows = "niri-src";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     qml-niri = {
       url = "github:imiric/qml-niri/main";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.quickshell.follows = "quickshell";
     };
     
-    #hytale-launcher.url = "github:JPyke3/hytale-launcher-nix";
-    hytale-launcher.url = "github:roboltz/hytale-launcher-nix/fix/icon";
+    hytale-launcher = {
+      #hytale-launcher.url = "github:JPyke3/hytale-launcher-nix";
+      url = "github:roboltz/hytale-launcher-nix/fix/icon";
+    };
 
 
     home-manager = {
@@ -33,7 +43,7 @@
     };
   };
 
-  outputs = inputs@{ self, nixpkgs, nixos-hardware, home-manager, stylix, ... }: {
+  outputs = inputs@{ self, nixpkgs, nixos-hardware, niri, home-manager, stylix, ... }: {
     nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
       specialArgs = { inherit inputs; };
       modules = [
@@ -55,6 +65,7 @@
       modules = [
 	      ./hosts/g5-5590/configuration.nix
 	      ./nixosModules
+        niri.nixosModules.niri
 	      nixos-hardware.nixosModules.dell-xps-15-7590
         stylix.nixosModules.stylix
 	      home-manager.nixosModules.home-manager

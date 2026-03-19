@@ -5,6 +5,7 @@
     niri-config.enable = lib.mkEnableOption "enable niri's config file";
   };
   config = lib.mkIf config.niri-config.enable {
+    programs.niri.config = null;
     #xdg.configFile."niri/config.kdl".source = ./config.kdl;
     #xdg.configFile."niri/config.kdl".force = true;
     home.packages = with pkgs; [ swaybg ];
@@ -173,7 +174,7 @@ layout {
         // off
 
         // How many logical pixels the ring extends out from the windows.
-        width 4
+        width 2
 
         // Colors can be set in a variety of ways:
         // - CSS named colors: "red"
@@ -475,8 +476,19 @@ window-rule {
 }
 
 window-rule {
-    match is-active=false
+    match app-id="^kitty$"
+ 
+    background-effect {
+        blur true
+    }
+}
+
+window-rule {
+    draw-border-with-background false
     opacity 0.85
+    background-effect {
+        blur true
+    }
 }
 
 binds {
