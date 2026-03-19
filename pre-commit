@@ -1,0 +1,7 @@
+#!/bin/sh
+for dir in private/*/; do
+    if [ "$dir" != "private/public-folder/" ]; then
+        git restore --staged "$dir" 2>/dev/null
+        git add -N "$dir"
+    fi
+done
