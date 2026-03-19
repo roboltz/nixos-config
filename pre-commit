@@ -1,6 +1,6 @@
 #!/bin/sh
-for dir in private/*/; do
-    if [ "$dir" != "private/public-folder/" ]; then
+for dir in hosts/*/; do
+    if [ "$dir" != "hosts/nixos/" ]; then
         git restore --staged "$dir" 2>/dev/null
         git add -N "$dir"
     fi
