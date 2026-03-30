@@ -23,24 +23,30 @@
           font = "${config.stylix.fonts.monospace.name}:size=${toString config.stylix.fonts.sizes.applications}";
           
           dmenuArgs = "-i -nb '${bg}' -nf '${fg}' -sb '${selbg}' -sf '${selfg}' -fn '${font}'";
-        in {
-          "${mod}+Return" = "exec alacritty";
+        in lib.mkOptionDefault {
+          "${mod}+t" = "exec kitty";
           "${mod}+d" = "exec j4-dmenu-desktop --dmenu=\"dmenu ${dmenuArgs}\"";
-          "${mod}+Shift+q" = "kill";
-          "${mod}+Shift+r" = "restart";
-          "${mod}+Shift+e" = "exec i3-nagbar -t warning -m 'Exit i3?' -B 'Yes' 'i3-msg exit'";
+          "${mod}+q" = "kill";
           
           # Focus
           "${mod}+h" = "focus left";
           "${mod}+j" = "focus down";
           "${mod}+k" = "focus up";
           "${mod}+l" = "focus right";
+          "${mod}+Left" = "focus left";
+          "${mod}+Down" = "focus down";
+          "${mod}+Up" = "focus up";
+          "${mod}+Right" = "focus right";
           
           # Move
           "${mod}+Shift+h" = "move left";
           "${mod}+Shift+j" = "move down";
           "${mod}+Shift+k" = "move up";
           "${mod}+Shift+l" = "move right";
+          "${mod}+Shift+Left" = "move left";
+          "${mod}+Shift+Down" = "move down";
+          "${mod}+Shift+Up" = "move up";
+          "${mod}+Shift+Right" = "move right";
           
           # Workspaces
           "${mod}+1" = "workspace number 1";
@@ -105,6 +111,7 @@
         }];
       };
     };
+
     services.autorandr.enable = true;
     programs.autorandr = {
       enable = true;

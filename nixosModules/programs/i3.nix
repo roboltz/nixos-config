@@ -19,12 +19,19 @@
       };
     };
 
+    services.libinput.touchpad = {
+      naturalScrolling = true;
+      tapping = true;          # tap to click
+      middleEmulation = true;  # three-finger tap = middle click
+      scrollMethod = "twofinger";
+    };
+
     services.picom = {
       enable = true;
       vSync = true;
       backend = "glx";
-      fade = false;
-      shadow = false;
+      fade = true;
+      shadow = true;
     };
 
     xdg.portal = {
@@ -34,6 +41,10 @@
       ];
       config.common.default = "*";
     };
+
+    environment.systemPackages = with pkgs; [
+      nautilus
+    ];
   };
 }
 
