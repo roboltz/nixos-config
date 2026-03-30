@@ -17,6 +17,20 @@
     xdg.portal.config.niri = {
       "org.freedesktop.impl.portal.FileChooser" = [ "gtk" ];
     };
+    #security.rtkit.enable = true;
+    #xdg.portal = {
+    #  enable = true;
+    #  extraPortals = [
+    #    pkgs.xdg-desktop-portal-gnome # or xdg-desktop-portal-gtk
+    #  ];
+    #  config = {
+    #    niri = {
+    #      "org.freedesktop.impl.portal.ScreenCast" = "gnome";
+    #      "org.freedesktop.impl.portal.Screenshot" = "gnome";
+    #      default = [ "gnome" ];
+    #    };
+    #  };
+    #}; 
     environment.systemPackages = with pkgs; [ 
       xwayland-satellite
       nautilus

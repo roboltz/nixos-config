@@ -6,15 +6,15 @@
   };
 
   config = lib.mkIf config.xfce.enable {
-    pipewire.enable = false;
     services.xserver = {
       enable = true;
       desktopManager = {
-        xterm.enable = true;
+        #xterm.enable = true;
         xfce.enable = true;
       };
     };
     services.displayManager.defaultSession = "xfce"; 
+    hardware.nvidia.forceFullCompositionPipeline = true;
   };
 
 }

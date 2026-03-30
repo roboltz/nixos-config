@@ -1,35 +1,30 @@
 { pkgs, lib, config, ... }:
 
 {
-options = {
-  plasma.enable = lib.mkEnableOption "enable kde plasma";
-};
+  options = {
+    plasma.enable = lib.mkEnableOption "enable kde plasma";
+  };
 
-config = lib.mkIf config.plasma.enable {
-services = {
-  desktopManager.plasma6.enable = true;
-  displayManager.sddm.enable = true;
-  displayManager.sddm.wayland.enable = true;
-};
+  config = lib.mkIf config.plasma.enable {
+    services = {
+      desktopManager.plasma6.enable = true;
+      displayManager.plasma-login-manager.enable = true;
+      xserver.enable = true;
+      tlp.enable = lib.mkForce false;
+    };    
 
-environment.systemPackages = with pkgs; [
-  # KDE Utilities
-  kdePackages.discover # Optional: Software center for Flatpaks/firmware updates
-  kdePackages.kcalc # Calculator
-  kdePackages.kcharselect # Character map
-  kdePackages.kclock # Clock app
-  kdePackages.kcolorchooser # Color picker
-  kdePackages.kolourpaint # Simple paint program
-  kdePackages.ksystemlog # System log viewer
-  kdePackages.sddm-kcm # SDDM configuration module
-  kdiff3 # File/directory comparison tool
-  
-  # Hardware/System Utilities (Optional)
-  kdePackages.isoimagewriter # Write hybrid ISOs to USB
-  kdePackages.partitionmanager # Disk and partition management
-  hardinfo2 # System benchmarks and hardware info
-  wayland-utils # Wayland diagnostic tools
-  wl-clipboard # Wayland copy/paste support
-];
-};
+    environment.plasma6.excludePackages = with pkgs.kdePackages; [
+      plasma-browser-integration
+      konsole
+      elisa
+      kate
+      khelpcenter
+    ];
+
+    environment.sessionVariables = {
+      KWIN_DRM_NO_AMS = "1";
+      KWIN_FORCE_SW_CURSOR = "1";
+    };
+  };
+
 }

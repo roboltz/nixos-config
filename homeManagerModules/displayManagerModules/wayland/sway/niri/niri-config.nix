@@ -283,7 +283,8 @@ layout {
 // See the binds section below for more spawn examples.
 
 spawn-at-startup "swaybg" "-o" "*" "-i" "${config.stylix.image}" "-m" "fill"
-spawn-at-startup "quickshell"
+// spawn-at-startup "quickshell"
+spawn-at-startup "waybar"
 spawn-at-startup "bash" "-c" "1password --silent & protonvpn-app &"
 
 // To run a shell command (with variables, pipes, etc.), use spawn-sh-at-startup:

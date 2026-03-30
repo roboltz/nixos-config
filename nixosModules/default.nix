@@ -7,6 +7,8 @@
     ./programs/gnome.nix
     ./programs/plasma.nix
     ./programs/xfce.nix
+    ./programs/dwm.nix
+    ./programs/i3.nix
     ./programs/niri.nix
     ./programs/stylix.nix
     ./programs/steam.nix

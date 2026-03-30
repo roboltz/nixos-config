@@ -17,7 +17,7 @@
       nerd-fonts.caskaydia-cove
       nerd-fonts.symbols-only
     ];
-    
+
     stylix = {
       enable = true;
       #base16Scheme = lib.mkForce "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
